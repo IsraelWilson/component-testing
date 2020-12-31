@@ -29,11 +29,11 @@ export const Calendar = ({ getDate = () => {} }) => {
     const newCal = [];
     const now = moment(date);
     const numDays = now.daysInMonth();
-    const offset = Math.floor((42 - numDays) / 2);
+    const day = now.day();
 
     // Add offset number of days from the end of last month
     const daysInLastMonth = now.subtract(1, "M").daysInMonth();
-    for (let i = daysInLastMonth - offset + 1; i <= daysInLastMonth; i++) {
+    for (let i = daysInLastMonth - day + 1; i <= daysInLastMonth; i++) {
       newCal.push(i);
     }
 
@@ -43,7 +43,7 @@ export const Calendar = ({ getDate = () => {} }) => {
     }
 
     // Add offset number of days for the start of next month
-    for (let i = 1; i <= (numDays % 2 === 0 ? offset : offset + 1); i++) {
+    for (let i = 1; i <= 42 - numDays - day; i++) {
       newCal.push(i);
     }
 
